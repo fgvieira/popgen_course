@@ -32,7 +32,6 @@ $ANGSD/angsd
 ```
 and you should see something like
 ```
-...
 Overview of methods:
         -GL             Estimate genotype likelihoods
         -doCounts       Calculate various counts statistics
@@ -70,7 +69,6 @@ Examples:
 If you specify an option, it will print more options:
 ```
 $ANGSD/angsd -bam
-...
 parseArgs_bambi.cpp: bam reader:
         -bam/-b         (null)  (list of BAM/CRAM files)
         -i              (null)  (Single BAM/CRAM file)
@@ -158,7 +156,6 @@ Now we are ready to calculate the ***genotype likelihoods*** for each site at ea
 To do so you need to specify which genotype likelihood model to use.
 ```
 $ANGSD/angsd -GL
-...
 -GL=0:
         1: SAMtools
         2: GATK
@@ -189,7 +186,6 @@ To calculate GL, we can:
 ```
 $ANGSD/angsd -b samples.bam_list -ref $REF -r 11:21000000-26000000 -out 1000G_GL -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -C 50 -baq 1 -minMapQ 20 -minQ 20 -minInd 5 -doCounts 1  -setMinDepth 30 -setMaxDepth 150 -GL 2 -doGlf 4
 ```
-where we specify:
 Parameter | Meaning
 --- | ---
 -GL 2 | genotype likelihood model as in GATK
@@ -209,7 +205,6 @@ However with low depth data direct counting of individually assigned genotypes c
 ANGSD has an option to estimate **allele frequencies** taking into account data uncertainty from genotype likelihoods:
 ```
 $ANGSD/angsd -doMaf
-...
 -doMaf  0 (Calculate persite frequencies '.mafs.gz')
         1: Frequency (fixed major and minor)
         2: Frequency (fixed major unknown minor)
@@ -238,7 +233,6 @@ NB These frequency estimators requires major/minor -doMajorMinor
 Since the estimation of allele frequencies requires the specification of how to assign the major and minor alleles (if biallelic):
 ```
 $ANGSD/angsd -doMajorMinor
-...
         -doMajorMinor   0
         1: Infer major and minor from GL
         2: Infer major and minor from allele counts
@@ -288,7 +282,8 @@ where `knownEM` specifies the algorithm used to estimate the (minor) allele freq
 You can notice that many sites have low allele frequency, probably reflecting the fact that that site is monomorphic. So, we may be interested in looking at allele frequencies only for sites that are actually variable in our sample or, in other words, perform **SNP calling**.
 
 ----------------------------
-**SNP calling**
+### SNP calling
+
 There are two main ways to call SNPs using ANGSD:
 ```
         -minMaf         0.000000        (Remove sites with MAF below)
@@ -317,7 +312,6 @@ For low coverage samples, it is advisable to work always with genotype likelihoo
 The option to call genotypes is `-doGeno`:
 ```
 $ANGSD/angsd -doGeno
-...
 -doGeno 0
         1: write major and minor
         2: write the called genotype encoded as -1,0,1,2, -1=not called
