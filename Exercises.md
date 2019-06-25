@@ -1,9 +1,10 @@
-﻿# PopGen BCN 2019 - Variant Calling
+﻿# PopGen Course - Variant Calling
 
 In this session you will learn how to do:
-* genotype calling
+* calculate genotype likelihoods
 * allele frequency estimation
 * variant calling
+* genotype calling
 
 For most of the examples, we will use the program [ANGSD](http://popgen.dk/wiki/index.php/ANGSD) (Analysis of Next Generation Sequencing Data) developed by Thorfinn Korneliussen and Anders Albrechtsen (and many contributors) at the University of Copenhagen.
 More information about its rationale and implemented methods can be found [here](http://www.ncbi.nlm.nih.gov/pubmed/25420514).
@@ -17,7 +18,6 @@ According to its website *ANGSD is a software for analyzing next generation sequ
 ANGSD="./"
 NGSTOOLS=""
 REF="data/hs37d5.fa.gz"
-ls data/*.bam | sort -t "." -k 5,5 > samples.bam_list
 ```
 
 ---------------------------------------------------
@@ -104,9 +104,14 @@ Examples for region specification:
 ---------------------------------------------------
 ### Get data
 ```
+mkdir data
+cd data/
 cut -f 1,2 samples.annot | tail -n +2 | parallel --dryrun --colsep "\t" -j 10 "wget -c ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/{1}/alignment/{1}.chrom11.ILLUMINA.bwa.{2}.*" | bash
 
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/phase2_reference_assembly_sequence/hs37d5.fa.gz
+cd ../
+
+ls data/*.bam | sort -t "." -k 5,5 > samples.bam_list
 ```
 
 ---------------------------------------------------
@@ -404,3 +409,9 @@ What information do they have?
 - Detecting variable sites based on their probability of being SNPs is generally a better choice than defining a threshold on the allele frequency.
 - Every dataset is different, so dedicated cutoffs and filtering should be perform to assess robustness of your SNPs
 - Not a lot of tools support genotype likelihoods, but there are some (e.g. [ngsTools](https://github.com/mfumagalli/ngsTools))
+
+--------------------------------
+### Extra Exercises
+- Subsample the BAM files (`samtools view -s 12345.3`) and re-run analyses, both with genotype likelihoods and called genotypes
+- What SNPs are different? What are their frequencies?
+- How do the PCA and admixture plots differ (use `admixture` instead `ngsAdmix`)?
