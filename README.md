@@ -1,2 +1,3 @@
-# popgen_course
-PopGen course
+# PopGen course
+
+Slides and exercises used for the population genetics course.
