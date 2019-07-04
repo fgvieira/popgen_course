@@ -384,7 +384,7 @@ Parameter | Meaning
 
 **PCA**
 ```
-R --vanilla --slave -e 'm <- as.matrix(read.table("1000G_GL_PCA.ibsMat")); mds <- cmdscale(as.dist(m)); plot(mds,lwd=2,ylab="Dist",xlab="Dist",main="multidimensional scaling",col=rep(1:3,each=5)); m <- as.matrix(read.table("1000G_GL_PCA.covMat")); e <- eigen(m); plot(e$vectors[,1:2],lwd=2,ylab="PC 2",xlab="PC 2",main="Principal components",col=rep(1:3,each=5),pch=16)'
+R --vanilla --slave -e 'm <- as.matrix(read.table("1000G_GL_PCA.ibsMat")); mds <- cmdscale(as.dist(m)); plot(mds,lwd=2,ylab="Dist",xlab="Dist",main="multidimensional scaling",col=rep(1:3,each=5)); m <- as.matrix(read.table("1000G_GL_PCA.covMat")); e <- eigen(m); plot(e$vectors[,1:2],lwd=2,ylab="PC 2",xlab="PC 1",main="Principal components",col=rep(1:3,each=5),pch=16)'
 mv Rplots.pdf 1000G_GL_PCA.pdf
 ```
 
