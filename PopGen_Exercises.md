@@ -249,7 +249,7 @@ $ANGSD/angsd -b samples.bam_list -ref $REF -r 11:21000000-22000000 -out 1000G_GL
 ```
 Parameter | Meaning
 --- | ---
--doMajorMinor 1 | How to define major and minor alleles
+-doMajorMinor 1 | How to define major and minor alleles (if making a VCF, consider 4)
 -doMaf 1 | How to calculate minor allele frequency
 
 >**QUESTION**
