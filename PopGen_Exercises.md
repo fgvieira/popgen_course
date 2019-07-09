@@ -15,8 +15,8 @@ According to its website *ANGSD is a software for analyzing next generation sequ
 ---------------------------------------------------
 ### Set variables and files
 ```
-ANGSD="./"
-NGSTOOLS=""
+ANGSD="/opt/ngsTools/angsd"
+NGSTOOLS="/opt/ngsTools"
 REF="data/hs37d5.fa.gz"
 ```
 
