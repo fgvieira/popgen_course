@@ -15,9 +15,10 @@ According to its website *ANGSD is a software for analyzing next generation sequ
 ---------------------------------------------------
 ### Set variables and files
 ```
+DATA="/home/ppguser/ppgdata/1000G"
 ANGSD="/opt/ngsTools/angsd"
 NGSTOOLS="/opt/ngsTools"
-REF="data/hs37d5.fa.gz"
+REF="$DATA/hs37d5.fa.gz"
 ```
 
 ---------------------------------------------------
@@ -103,13 +104,15 @@ Examples for region specification:
 ### Get data
 ```
 mkdir data
-cd data/
+cd $DATA/
 cut -f 1,2 samples.annot | tail -n +2 | parallel --dryrun --colsep "\t" -j 10 "wget -c ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/{1}/alignment/{1}.chrom11.ILLUMINA.bwa.{2}.*" | bash
 
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/phase2_reference_assembly_sequence/hs37d5.fa.gz
 cd ../
 
-ls data/*.bam | sort -t "." -k 5,5 > samples.bam_list
+wget https://raw.githubusercontent.com/fgvieira/popgen_course/master/samples.annot
+ 
+ls $DATA/*.bam | sort -t "." -k 5,5 > samples.bam_list
 ```
 
 ---------------------------------------------------
